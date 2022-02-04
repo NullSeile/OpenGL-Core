@@ -22,14 +22,21 @@ project "OpenGL-Core"
 		"_CRT_SECURE_NO_WARNINGS"
 	}
 
+	IncludeDir = {}
+	IncludeDir["GLFW"] = "vendor/GLFW/include"
+	IncludeDir["Glad"] = "vendor/Glad/include"
+	IncludeDir["ImGui"] = "vendor/imgui"
+	IncludeDir["glm"] = "vendor/glm"
+	IncludeDir["stb"] = "vendor/stb"
+
 	includedirs {
 		"src",
 		"vendor/spdlog/include",
-		"vendor/GLFW/include",
-		"vendor/Glad/include",
-		"vendor/imgui",
-		"vendor/glm",
-		"vendor/stb"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb}"
 	}
 
 	links { 

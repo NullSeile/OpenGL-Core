@@ -35,6 +35,7 @@ namespace GLCore {
 		virtual uint32_t GetHeight() const = 0;
 
 		virtual void MakeScreenshot(const std::string& path) const = 0;
+		virtual void SetIcon(const std::string& icon_path) = 0;
 
 		// Window attributes
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;

@@ -11,6 +11,9 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_write.h>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 namespace GLCore {
 	
 	static bool s_GLFWInitialized = false;
@@ -177,6 +180,14 @@ namespace GLCore {
 		stbi_write_png(path.c_str(), m_Data.Width, m_Data.Height, 3, pixels, m_Data.Width * 3);
 
 		delete[] pixels;
+	}
+
+	void WindowsWindow::SetIcon(const std::string& icon_path)
+	{
+		GLFWimage image;
+		image.pixels = stbi_load(icon_path.c_str(), &image.width, &image.height, nullptr, 4);
+		glfwSetWindowIcon(m_Window, 1, &image);
+		stbi_image_free(image.pixels);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

@@ -18,6 +18,7 @@ namespace GLCore {
 		inline uint32_t GetHeight() const override { return m_Data.Height; }
 
 		void MakeScreenshot(const std::string& path) const override;
+		void SetIcon(const std::string& icon_path) override;
 
 		// Window attributes
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }

@@ -6,7 +6,7 @@
 
 namespace GLCore::Utils {
 
-	static std::string ToLower(std::string& str)
+	static std::string ToLower(const std::string& str)
 	{
 		for (auto c : str)
 			c = (char)std::tolower((int)c);

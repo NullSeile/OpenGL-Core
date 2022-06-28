@@ -5,6 +5,10 @@
 #include "GLCore/Events/MouseEvent.h"
 #include "GLCore/Events/KeyEvent.h"
 
+#include <commdlg.h>
+
+#define GLFW_EXPOSE_NATIVE_WIN32
+#include <GLFW/glfw3native.h>
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
@@ -13,6 +17,7 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+
 
 namespace GLCore {
 	
@@ -188,6 +193,33 @@ namespace GLCore {
 		image.pixels = stbi_load(icon_path.c_str(), &image.width, &image.height, nullptr, 4);
 		glfwSetWindowIcon(m_Window, 1, &image);
 		stbi_image_free(image.pixels);
+	}
+
+	bool WindowsWindow::SaveFileDialog(const std::string& filter, std::string& fileName)
+	{
+		CHAR file[256];
+		strcpy_s(file, fileName.c_str());
+
+		OPENFILENAMEA ofn;
+		ZeroMemory(&ofn, sizeof(OPENFILENAME));
+		ofn.lStructSize = sizeof(OPENFILENAME);
+		ofn.hwndOwner = glfwGetWin32Window(m_Window);
+		ofn.lpstrFile = file;
+		ofn.nMaxFile = sizeof(file);
+		ofn.lpstrFilter = filter.c_str();
+		ofn.nFilterIndex = 1;
+		ofn.Flags = OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT;
+
+		// Sets the default extension by extracting it from the filter
+		ofn.lpstrDefExt = strchr(filter.c_str(), '\0') + 1;
+
+		if (GetSaveFileNameA(&ofn) == TRUE)
+		{
+			fileName = file;
+			return true;
+		}
+		else
+			return false;
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

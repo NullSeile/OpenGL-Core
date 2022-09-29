@@ -208,7 +208,7 @@ namespace GLCore {
 		ofn.nMaxFile = sizeof(file);
 		ofn.lpstrFilter = filter.c_str();
 		ofn.nFilterIndex = 1;
-		ofn.Flags = OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT;
+		ofn.Flags = OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR;
 
 		// Sets the default extension by extracting it from the filter
 		ofn.lpstrDefExt = strchr(filter.c_str(), '\0') + 1;

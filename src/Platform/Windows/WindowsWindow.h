@@ -20,7 +20,7 @@ namespace GLCore {
 		void MakeScreenshot(const std::string& path) const override;
 		void SetIcon(const std::string& icon_path) override;
 
-		bool SaveFileDialog(const std::string& filter, std::string& filePath) override;
+		bool SaveFileDialog(const char* filter, std::string& filePath) override;
 
 		// Window attributes
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }

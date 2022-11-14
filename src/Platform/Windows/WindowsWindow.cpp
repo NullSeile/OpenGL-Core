@@ -195,7 +195,7 @@ namespace GLCore {
 		stbi_image_free(image.pixels);
 	}
 
-	bool WindowsWindow::SaveFileDialog(const std::string& filter, std::string& fileName)
+	bool WindowsWindow::SaveFileDialog(const char* filter, std::string& fileName)
 	{
 		CHAR file[256];
 		strcpy_s(file, fileName.c_str());
@@ -206,12 +206,12 @@ namespace GLCore {
 		ofn.hwndOwner = glfwGetWin32Window(m_Window);
 		ofn.lpstrFile = file;
 		ofn.nMaxFile = sizeof(file);
-		ofn.lpstrFilter = filter.c_str();
+		ofn.lpstrFilter = filter;
 		ofn.nFilterIndex = 1;
 		ofn.Flags = OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR;
 
 		// Sets the default extension by extracting it from the filter
-		ofn.lpstrDefExt = strchr(filter.c_str(), '\0') + 1;
+		ofn.lpstrDefExt = strchr(filter, '\0') + 1;
 
 		if (GetSaveFileNameA(&ofn) == TRUE)
 		{

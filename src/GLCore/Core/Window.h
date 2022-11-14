@@ -37,7 +37,7 @@ namespace GLCore {
 		virtual void MakeScreenshot(const std::string& path) const = 0;
 		virtual void SetIcon(const std::string& icon_path) = 0;
 
-		virtual bool SaveFileDialog(const std::string& filter, std::string& filePath) = 0;
+		virtual bool SaveFileDialog(const char* filter, std::string& filePath) = 0;
 
 		// Window attributes
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;

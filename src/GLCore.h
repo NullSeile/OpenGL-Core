@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui.h>
 
 #include "GLCore/Core/Application.h"

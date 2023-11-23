@@ -2,6 +2,7 @@
 #include "ImGuiLayer.h"
 
 #include "imgui.h"
+#include <implot.h>
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
@@ -22,6 +23,7 @@ namespace GLCore {
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
+		ImPlot::CreateContext();
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
@@ -51,6 +53,7 @@ namespace GLCore {
 	{
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
+		ImPlot::DestroyContext();
 		ImGui::DestroyContext();
 	}
 	

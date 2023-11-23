@@ -16,6 +16,8 @@ project "OpenGL-Core"
 		"vendor/stb/**.h",
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
+		"vendor/implot/*.h",
+		"vendor/implot/*.cpp",
 	}
 
 	defines {
@@ -28,6 +30,7 @@ project "OpenGL-Core"
 	IncludeDir["ImGui"] = "vendor/imgui"
 	IncludeDir["glm"] = "vendor/glm"
 	IncludeDir["stb"] = "vendor/stb"
+	IncludeDir["ImPlot"] = "vendor/implot"
 
 	includedirs {
 		"src",
@@ -36,7 +39,8 @@ project "OpenGL-Core"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb}"
+		"%{IncludeDir.stb}",
+		"%{IncludeDir.ImPlot}"
 	}
 
 	links { 

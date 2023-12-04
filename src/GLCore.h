@@ -8,5 +8,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui.h>
+#include <implot.h>
 
 #include "GLCore/Core/Application.h"

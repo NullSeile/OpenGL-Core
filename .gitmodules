@@ -4,12 +4,12 @@
 [submodule "vendor/imgui"]
 	path = vendor/imgui
 	url = https://github.com/NullSeile/imgui.git
-[submodule "vendor/implot"]
-	path = vendor/implot
-	url = https://github.com/epezent/implot.git
 [submodule "vendor/glm"]
 	path = vendor/glm
 	url = https://github.com/g-truc/glm.git
 [submodule "vendor/glfw"]
 	path = vendor/glfw
 	url = https://github.com/NullSeile/glfw.git
+[submodule "vendor/implot"]
+	path = vendor/implot
+	url = https://github.com/epezent/implot.git

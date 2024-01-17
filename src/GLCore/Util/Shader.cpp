@@ -21,17 +21,23 @@ namespace GLCore::Utils {
 		glCompileShader(shader);
 		GLint isCompiled = 0;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
+		auto error = std::optional<std::string>{};
+
 		if (isCompiled == GL_FALSE)
 		{
 			GLint maxLength = 0;
 			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
 
 			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+			glGetShaderInfoLog(shader, maxLength, &maxLength, infoLog.data());
 
-			return std::string(infoLog.data());
+			error = std::string(infoLog.data());
 		}
-		return {};
+
+		// glDetachShader(program, shader);
+		// glDeleteShader(shader);
+
+		return error;
 	}
 
 	GLuint CreateShader(const std::string& source)
@@ -52,11 +58,12 @@ namespace GLCore::Utils {
 			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
 
 			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+			glGetShaderInfoLog(shader, maxLength, &maxLength, infoLog.data());
 
 			glDeleteShader(shader);
 
 			LOG_ERROR("{0}", infoLog.data());
+			return 0;
 		}
 
 		glAttachShader(program, shader);
@@ -72,13 +79,14 @@ namespace GLCore::Utils {
 			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
 
 			std::vector<GLchar> infoLog(maxLength);
-			glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+			glGetProgramInfoLog(program, maxLength, &maxLength, infoLog.data());
 
 			glDeleteProgram(program);
 
 			glDeleteShader(shader);
 
 			LOG_ERROR("{0}", infoLog.data());
+			return 0;
 		}
 
 		glDetachShader(program, shader);

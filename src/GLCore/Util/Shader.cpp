@@ -40,7 +40,7 @@ namespace GLCore::Utils {
 		return error;
 	}
 
-	GLuint CreateShader(const std::string& source)
+	GLuint CreateShader(std::string_view source)
 	{
 		GLuint program = glCreateProgram();
 

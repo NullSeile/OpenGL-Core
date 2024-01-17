@@ -6,7 +6,7 @@
 
 namespace GLCore::Utils {
 
-	GLuint CreateShader(const std::string& source);
+	GLuint CreateShader(std::string_view source);
 	std::optional<std::string> ValidateShader(std::string_view source);
 
 }
